@@ -1,0 +1,50 @@
+[
+  {
+    "Name": "Summer Holidays",
+    "StartDate": "2025-12-20",
+    "EndDate": "2026-01-31",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Easter Holidays",
+    "StartDate": "2026-04-10",
+    "EndDate": "2026-04-25",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Winter Holidays",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-07-15",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Spring Holidays",
+    "StartDate": "2026-09-26",
+    "EndDate": "2026-10-11",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Summer Holidays",
+    "StartDate": "2026-12-19",
+    "EndDate": "2027-01-30",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Easter Holidays",
+    "StartDate": "2027-04-02",
+    "EndDate": "2027-04-17",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Winter Holidays",
+    "StartDate": "2027-06-30",
+    "EndDate": "2027-07-14",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Spring Holidays",
+    "StartDate": "2027-09-25",
+    "EndDate": "2027-10-10",
+    "States": ["ALL"]
+  }
+]

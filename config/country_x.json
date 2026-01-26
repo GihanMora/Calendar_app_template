@@ -1,0 +1,24 @@
+{
+  "countryName": "X",
+  "appName": "X Calendar",
+  "appIcon": "assets/icons/app_icon.png",
+  "packageName": "com.example.xcalendar",
+  "applicationId": "com.example.xcalendar",
+  "publicHolidaysJson": "config/x_public_holidays_2025_2027.json",
+  "schoolHolidaysJson": "config/x_school_holidays_2025_2027.json",
+  "enableStates": true,
+  "enableSchoolHolidays": true,
+  "playStoreUrl": "https://play.google.com/store/apps/details?id=com.example.xcalendar",
+  "admobAppId": "ca-app-pub-3940256099942544~3347511713",
+  "bannerAdUnitId": "ca-app-pub-5202253201958912/6764035035",
+  "interstitialAdUnitId": "ca-app-pub-5202253201958912/4746790831",
+  "rewardedAdUnitId": "ca-app-pub-5202253201958912/9065289963",
+  "nativeAdUnitId": "ca-app-pub-5202253201958912/4529194873",
+  "regions": [
+    { "code": "ALL", "name": "All Regions" },
+    { "code": "REGION1", "name": "Region 1" },
+    { "code": "REGION2", "name": "Region 2" },
+    { "code": "REGION3", "name": "Region 3" }
+  ],
+  "notes": "Edit this file to configure the app. Changes here will be reflected in the app. The JSON is bundled with the app and loaded at startup."
+}

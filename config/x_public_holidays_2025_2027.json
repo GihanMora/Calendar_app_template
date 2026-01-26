@@ -1,0 +1,65 @@
+[
+  {
+    "Date": "2025-01-01",
+    "Weekday": "Wednesday",
+    "Holiday Name": "New Year's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-12-25",
+    "Weekday": "Thursday",
+    "Holiday Name": "Christmas Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-12-26",
+    "Weekday": "Friday",
+    "Holiday Name": "Boxing Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-01-01",
+    "Weekday": "Thursday",
+    "Holiday Name": "New Year's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-25",
+    "Weekday": "Friday",
+    "Holiday Name": "Christmas Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-26",
+    "Weekday": "Saturday",
+    "Holiday Name": "Boxing Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-01-01",
+    "Weekday": "Friday",
+    "Holiday Name": "New Year's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-25",
+    "Weekday": "Saturday",
+    "Holiday Name": "Christmas Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-26",
+    "Weekday": "Sunday",
+    "Holiday Name": "Boxing Day",
+    "Type": "National",
+    "States": ["ALL"]
+  }
+]
