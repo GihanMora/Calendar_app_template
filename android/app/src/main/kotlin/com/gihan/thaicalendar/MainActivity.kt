@@ -1,4 +1,4 @@
-package com.example.xcalendar
+package com.gihan.thaicalendar
 
 import android.os.Build
 import android.os.Bundle

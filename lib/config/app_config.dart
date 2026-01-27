@@ -14,13 +14,13 @@ class AppConfig {
   static const String _defaultCountryName = 'X';
   static const String _defaultAppName = 'X Calendar';
   static const String _defaultAppIcon = 'assets/icons/app_icon.png';
-  static const String _defaultPackageName = 'com.example.xcalendar';
-  static const String _defaultApplicationId = 'com.example.xcalendar';
-  static const String _defaultPublicHolidaysJson = 'config/x_public_holidays_2025_2027.json';
-  static const String _defaultSchoolHolidaysJson = 'config/x_school_holidays_2025_2027.json';
+  static const String _defaultPackageName = 'com.gihan.thaicalendar';
+  static const String _defaultApplicationId = 'com.gihan.thaicalendar';
+  static const String _defaultPublicHolidaysJson = 'config/th_public_holidays_2025_2027.json';
+  static const String _defaultSchoolHolidaysJson = 'config/th_school_holidays_2025_2027.json';
   static const bool _defaultEnableStates = true;
   static const bool _defaultEnableSchoolHolidays = true;
-  static const String _defaultPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.example.xcalendar';
+  static const String _defaultPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.gihan.thaicalendar';
   static const String _defaultAdmobAppId = 'ca-app-pub-3940256099942544~3347511713';
   static const String _defaultBannerAdUnitId = 'ca-app-pub-5202253201958912/6764035035';
   static const String _defaultInterstitialAdUnitId = 'ca-app-pub-5202253201958912/4746790831';
