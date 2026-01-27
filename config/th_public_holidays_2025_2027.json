@@ -1,0 +1,359 @@
+[
+  {
+    "Date": "2025-01-01",
+    "Weekday": "Wednesday",
+    "Holiday Name": "New Year's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-02-10",
+    "Weekday": "Monday",
+    "Holiday Name": "Makha Bucha Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-04-06",
+    "Weekday": "Sunday",
+    "Holiday Name": "Chakri Memorial Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-04-13",
+    "Weekday": "Sunday",
+    "Holiday Name": "Songkran Festival Day 1",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-04-14",
+    "Weekday": "Monday",
+    "Holiday Name": "Songkran Festival Day 2",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-04-15",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Songkran Festival Day 3",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-05-01",
+    "Weekday": "Thursday",
+    "Holiday Name": "Labour Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-05-05",
+    "Weekday": "Monday",
+    "Holiday Name": "Coronation Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-05-12",
+    "Weekday": "Monday",
+    "Holiday Name": "Visakha Bucha Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-06-03",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Queen Suthida's Birthday",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-07-28",
+    "Weekday": "Monday",
+    "Holiday Name": "King Vajiralongkorn's Birthday",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-08-12",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Queen Sirikit's Birthday / Mother's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-10-13",
+    "Weekday": "Monday",
+    "Holiday Name": "King Chulalongkorn Memorial Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-10-23",
+    "Weekday": "Thursday",
+    "Holiday Name": "Chulalongkorn Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-12-05",
+    "Weekday": "Friday",
+    "Holiday Name": "King Bhumibol Adulyadej's Birthday / Father's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-12-10",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Constitution Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-12-31",
+    "Weekday": "Wednesday",
+    "Holiday Name": "New Year's Eve",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-01-01",
+    "Weekday": "Thursday",
+    "Holiday Name": "New Year's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-02-28",
+    "Weekday": "Saturday",
+    "Holiday Name": "Makha Bucha Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-06",
+    "Weekday": "Monday",
+    "Holiday Name": "Chakri Memorial Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-13",
+    "Weekday": "Monday",
+    "Holiday Name": "Songkran Festival Day 1",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-14",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Songkran Festival Day 2",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-15",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Songkran Festival Day 3",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-05-01",
+    "Weekday": "Friday",
+    "Holiday Name": "Labour Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-05-05",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Coronation Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-06-01",
+    "Weekday": "Monday",
+    "Holiday Name": "Visakha Bucha Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-06-03",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Queen Suthida's Birthday",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-07-28",
+    "Weekday": "Tuesday",
+    "Holiday Name": "King Vajiralongkorn's Birthday",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-08-12",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Queen Sirikit's Birthday / Mother's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-10-13",
+    "Weekday": "Tuesday",
+    "Holiday Name": "King Chulalongkorn Memorial Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-10-23",
+    "Weekday": "Friday",
+    "Holiday Name": "Chulalongkorn Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-05",
+    "Weekday": "Saturday",
+    "Holiday Name": "King Bhumibol Adulyadej's Birthday / Father's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-10",
+    "Weekday": "Thursday",
+    "Holiday Name": "Constitution Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-31",
+    "Weekday": "Thursday",
+    "Holiday Name": "New Year's Eve",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-01-01",
+    "Weekday": "Friday",
+    "Holiday Name": "New Year's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-02-16",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Makha Bucha Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-04-06",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Chakri Memorial Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-04-13",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Songkran Festival Day 1",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-04-14",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Songkran Festival Day 2",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-04-15",
+    "Weekday": "Thursday",
+    "Holiday Name": "Songkran Festival Day 3",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-05-01",
+    "Weekday": "Saturday",
+    "Holiday Name": "Labour Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-05-05",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Coronation Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-05-21",
+    "Weekday": "Friday",
+    "Holiday Name": "Visakha Bucha Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-06-03",
+    "Weekday": "Thursday",
+    "Holiday Name": "Queen Suthida's Birthday",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-07-28",
+    "Weekday": "Wednesday",
+    "Holiday Name": "King Vajiralongkorn's Birthday",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-08-12",
+    "Weekday": "Thursday",
+    "Holiday Name": "Queen Sirikit's Birthday / Mother's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-10-13",
+    "Weekday": "Wednesday",
+    "Holiday Name": "King Chulalongkorn Memorial Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-10-23",
+    "Weekday": "Saturday",
+    "Holiday Name": "Chulalongkorn Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-05",
+    "Weekday": "Sunday",
+    "Holiday Name": "King Bhumibol Adulyadej's Birthday / Father's Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-10",
+    "Weekday": "Friday",
+    "Holiday Name": "Constitution Day",
+    "Type": "National",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-31",
+    "Weekday": "Friday",
+    "Holiday Name": "New Year's Eve",
+    "Type": "National",
+    "States": ["ALL"]
+  }
+]

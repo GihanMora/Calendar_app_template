@@ -1,0 +1,38 @@
+[
+  {
+    "Name": "Summer Holidays",
+    "StartDate": "2025-03-15",
+    "EndDate": "2025-05-15",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Mid-Year Holidays",
+    "StartDate": "2025-10-01",
+    "EndDate": "2025-10-31",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Summer Holidays",
+    "StartDate": "2026-03-15",
+    "EndDate": "2026-05-15",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Mid-Year Holidays",
+    "StartDate": "2026-10-01",
+    "EndDate": "2026-10-31",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Summer Holidays",
+    "StartDate": "2027-03-15",
+    "EndDate": "2027-05-15",
+    "States": ["ALL"]
+  },
+  {
+    "Name": "Mid-Year Holidays",
+    "StartDate": "2027-10-01",
+    "EndDate": "2027-10-31",
+    "States": ["ALL"]
+  }
+]
