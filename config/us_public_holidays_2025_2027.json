@@ -1,0 +1,233 @@
+[
+  {
+    "Date": "2025-01-01",
+    "Weekday": "Wednesday",
+    "Holiday Name": "New Year's Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-01-20",
+    "Weekday": "Monday",
+    "Holiday Name": "Martin Luther King Jr. Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-02-17",
+    "Weekday": "Monday",
+    "Holiday Name": "Presidents' Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-05-26",
+    "Weekday": "Monday",
+    "Holiday Name": "Memorial Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-06-19",
+    "Weekday": "Thursday",
+    "Holiday Name": "Juneteenth",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-07-04",
+    "Weekday": "Friday",
+    "Holiday Name": "Independence Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-09-01",
+    "Weekday": "Monday",
+    "Holiday Name": "Labor Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-10-13",
+    "Weekday": "Monday",
+    "Holiday Name": "Columbus Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-11-11",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Veterans Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-11-27",
+    "Weekday": "Thursday",
+    "Holiday Name": "Thanksgiving Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-12-25",
+    "Weekday": "Thursday",
+    "Holiday Name": "Christmas Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-01-01",
+    "Weekday": "Thursday",
+    "Holiday Name": "New Year's Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-01-19",
+    "Weekday": "Monday",
+    "Holiday Name": "Martin Luther King Jr. Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-02-16",
+    "Weekday": "Monday",
+    "Holiday Name": "Presidents' Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-05-25",
+    "Weekday": "Monday",
+    "Holiday Name": "Memorial Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-06-19",
+    "Weekday": "Friday",
+    "Holiday Name": "Juneteenth",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-07-04",
+    "Weekday": "Saturday",
+    "Holiday Name": "Independence Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-09-07",
+    "Weekday": "Monday",
+    "Holiday Name": "Labor Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-10-12",
+    "Weekday": "Monday",
+    "Holiday Name": "Columbus Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-11-11",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Veterans Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-11-26",
+    "Weekday": "Thursday",
+    "Holiday Name": "Thanksgiving Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-25",
+    "Weekday": "Friday",
+    "Holiday Name": "Christmas Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-01-01",
+    "Weekday": "Friday",
+    "Holiday Name": "New Year's Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-01-18",
+    "Weekday": "Monday",
+    "Holiday Name": "Martin Luther King Jr. Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-02-15",
+    "Weekday": "Monday",
+    "Holiday Name": "Presidents' Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-05-31",
+    "Weekday": "Monday",
+    "Holiday Name": "Memorial Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-06-19",
+    "Weekday": "Saturday",
+    "Holiday Name": "Juneteenth",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-07-04",
+    "Weekday": "Sunday",
+    "Holiday Name": "Independence Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-09-06",
+    "Weekday": "Monday",
+    "Holiday Name": "Labor Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-10-11",
+    "Weekday": "Monday",
+    "Holiday Name": "Columbus Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-11-11",
+    "Weekday": "Thursday",
+    "Holiday Name": "Veterans Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-11-25",
+    "Weekday": "Thursday",
+    "Holiday Name": "Thanksgiving Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-25",
+    "Weekday": "Saturday",
+    "Holiday Name": "Christmas Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  }
+]

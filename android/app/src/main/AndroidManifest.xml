@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gihan.uscalendar">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -19,7 +20,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="${admobAppId}" />
         <activity
-            android:name="com.example.xcalendar.MainActivity"
+            android:name="com.gihan.uscalendar.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""

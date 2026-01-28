@@ -1,0 +1,156 @@
+[
+  {
+    "Date": "2025-06-01",
+    "Weekday": "Sunday",
+    "Holiday Name": "Summer Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-08-31",
+    "Weekday": "Sunday",
+    "Holiday Name": "Summer Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-11-24",
+    "Weekday": "Monday",
+    "Holiday Name": "Thanksgiving Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-11-28",
+    "Weekday": "Friday",
+    "Holiday Name": "Thanksgiving Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2025-12-20",
+    "Weekday": "Saturday",
+    "Holiday Name": "Winter Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-01-05",
+    "Weekday": "Monday",
+    "Holiday Name": "Winter Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-03-14",
+    "Weekday": "Saturday",
+    "Holiday Name": "Spring Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-03-22",
+    "Weekday": "Sunday",
+    "Holiday Name": "Spring Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-06-01",
+    "Weekday": "Monday",
+    "Holiday Name": "Summer Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-08-31",
+    "Weekday": "Monday",
+    "Holiday Name": "Summer Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-11-23",
+    "Weekday": "Monday",
+    "Holiday Name": "Thanksgiving Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-11-27",
+    "Weekday": "Friday",
+    "Holiday Name": "Thanksgiving Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-19",
+    "Weekday": "Saturday",
+    "Holiday Name": "Winter Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-01-04",
+    "Weekday": "Monday",
+    "Holiday Name": "Winter Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-03-13",
+    "Weekday": "Saturday",
+    "Holiday Name": "Spring Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-03-21",
+    "Weekday": "Sunday",
+    "Holiday Name": "Spring Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-06-01",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Summer Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-08-31",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Summer Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-11-22",
+    "Weekday": "Monday",
+    "Holiday Name": "Thanksgiving Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-11-26",
+    "Weekday": "Friday",
+    "Holiday Name": "Thanksgiving Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-18",
+    "Weekday": "Saturday",
+    "Holiday Name": "Winter Break Start",
+    "Type": "School",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2028-01-03",
+    "Weekday": "Monday",
+    "Holiday Name": "Winter Break End",
+    "Type": "School",
+    "States": ["ALL"]
+  }
+]

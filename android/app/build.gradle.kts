@@ -26,9 +26,9 @@ fun readConfigValue(jsonContent: String, key: String, default: String): String {
 fun readConfigFromJson(): Map<String, String> {
     val configFile = rootProject.file("../config/country_x.json")
     val defaults = mapOf(
-        "appName" to "X Calendar",
-        "packageName" to "com.example.xcalendar",
-        "applicationId" to "com.example.xcalendar",
+        "appName" to "US Calendar",
+        "packageName" to "com.gihan.uscalendar",
+        "applicationId" to "com.gihan.uscalendar",
         "admobAppId" to "ca-app-pub-3940256099942544~3347511713"
     )
     
@@ -55,9 +55,9 @@ fun readConfigFromJson(): Map<String, String> {
 }
 
 val appConfig = readConfigFromJson()
-val appNameFromConfig = appConfig["appName"] ?: "X Calendar"
-val packageNameFromConfig = appConfig["packageName"] ?: "com.example.xcalendar"
-val applicationIdFromConfig = appConfig["applicationId"] ?: "com.example.xcalendar"
+val appNameFromConfig = appConfig["appName"] ?: "US Calendar"
+val packageNameFromConfig = appConfig["packageName"] ?: "com.gihan.uscalendar"
+val applicationIdFromConfig = appConfig["applicationId"] ?: "com.gihan.uscalendar"
 val admobAppIdFromConfig = appConfig["admobAppId"] ?: "ca-app-pub-3940256099942544~3347511713"
 
 android {
