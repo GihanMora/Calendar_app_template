@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import '../services/holiday_service.dart';
 import '../services/school_holiday_service.dart';
 import '../providers/state_provider.dart';
+import '../providers/language_provider.dart';
 import '../widgets/native_ad_widget.dart';
+import '../utils/localization.dart';
 import 'dart:developer' as developer;
 
 class PublicHolidaysScreen extends StatefulWidget {
@@ -142,9 +144,10 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StateProvider>(
-      builder: (context, stateProvider, child) {
+    return Consumer2<StateProvider, LanguageProvider>(
+      builder: (context, stateProvider, languageProvider, child) {
         final color = Theme.of(context).colorScheme;
+        final language = languageProvider.language;
 
         // Reload holidays if state changes
         if (stateProvider.selectedState != HolidayService.getSelectedState()) {
@@ -154,33 +157,35 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Public Holidays'),
+            title: Text(AppLocalization.getText('public_holidays', language)),
             backgroundColor: color.primary,
             foregroundColor: color.onPrimary,
           ),
           body: _isLoading
               ? const Center(child: CircularProgressIndicator())
-              : _buildHolidaysList(context, stateProvider, color),
+              : _buildHolidaysList(context, stateProvider, color, language),
         );
       },
     );
   }
 
-  Widget _buildHolidaysList(BuildContext context, StateProvider stateProvider, ColorScheme color) {
+  Widget _buildHolidaysList(BuildContext context, StateProvider stateProvider, ColorScheme color, String language) {
     if (_holidays.isEmpty) {
       return ListView(
         controller: _scrollController,
         padding: const EdgeInsets.all(16.0),
         children: [
           Text(
-            'Public Holidays for ${stateProvider.selectedStateName}',
+            '${AppLocalization.getText('public_holidays', language)} - ${stateProvider.selectedStateName}',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: color.onSurface,
                 ),
           ),
           const SizedBox(height: 10),
-          const Text('No public holidays found for this state/territory.'),
+          Text(language == 'th' 
+              ? 'ไม่พบวันหยุดราชการสำหรับรัฐ/เขตนี้'
+              : 'No public holidays found for this state/territory.'),
         ],
       );
     }
@@ -190,7 +195,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
 
     final List<Widget> children = [
       Text(
-        'Public Holidays for ${stateProvider.selectedStateName}',
+        '${AppLocalization.getText('public_holidays', language)} - ${stateProvider.selectedStateName}',
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
               color: color.onSurface,
@@ -216,7 +221,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
           child: Row(
             children: [
               Text(
-                '$year',
+                stateProvider.getFormattedYear(year),
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: color.onPrimaryContainer,
@@ -246,6 +251,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
           context,
           holiday,
           color,
+          language,
           isMostRecent: isMostRecent,
         );
         children.add(
@@ -261,7 +267,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
       children.addAll([
         const SizedBox(height: 32),
         Text(
-          'School Holidays for ${stateProvider.selectedStateName}',
+          '${AppLocalization.getText('school_holidays', language)} - ${stateProvider.selectedStateName}',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: color.onSurface,
@@ -269,9 +275,11 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
         ),
         const SizedBox(height: 10),
         if (_schoolHolidays.isEmpty)
-          const Text('No school holidays found for this state/territory.')
+          Text(language == 'th' 
+              ? 'ไม่พบวันหยุดโรงเรียนสำหรับรัฐ/เขตนี้'
+              : 'No school holidays found for this state/territory.')
         else
-          ..._schoolHolidays.map((holiday) => _buildSchoolHolidayItem(context, holiday, color)),
+          ..._schoolHolidays.map((holiday) => _buildSchoolHolidayItem(context, holiday, color, language)),
       ]);
     }
 
@@ -285,7 +293,8 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
   Widget _buildHolidayItem(
     BuildContext context,
     Holiday holiday,
-    ColorScheme color, {
+    ColorScheme color,
+    String language, {
     bool isMostRecent = false,
   }) {
     final holidayDate = DateTime.parse(holiday.date);
@@ -310,7 +319,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
           ),
         ),
         title: Text(
-          holiday.holidayName,
+          holiday.getName(language),
           style: TextStyle(
             fontWeight: shouldHighlight ? FontWeight.bold : FontWeight.normal,
             color: shouldHighlight ? color.onPrimary : null,
@@ -344,7 +353,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
     );
   }
 
-  Widget _buildSchoolHolidayItem(BuildContext context, SchoolHoliday holiday, ColorScheme color) {
+  Widget _buildSchoolHolidayItem(BuildContext context, SchoolHoliday holiday, ColorScheme color, String language) {
     final todayStripped = DateTime(_today.year, _today.month, _today.day);
     final isCurrent = holiday.isDateInRange(todayStripped);
 
@@ -376,7 +385,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
               ),
             ),
             Text(
-              'School Holiday',
+              AppLocalization.getText('school_holidays', language),
               style: TextStyle(
                 color: isCurrent ? color.onTertiaryContainer.withOpacity(0.6) : color.onSurfaceVariant,
                 fontSize: 12,

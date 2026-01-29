@@ -6,6 +6,7 @@ import '../config/app_config.dart';
 class StateProvider extends ChangeNotifier {
   String _selectedState = 'ALL';
   bool _showSchoolHolidays = false;
+  bool _useBuddhistEra = false; // Buddhist Era (BE) vs International (Gregorian)
 
   StateProvider() {
     _loadState();
@@ -13,6 +14,26 @@ class StateProvider extends ChangeNotifier {
 
   String get selectedState => _selectedState;
   bool get showSchoolHolidays => _showSchoolHolidays;
+  bool get useBuddhistEra => _useBuddhistEra;
+
+  /// Convert Gregorian year to Buddhist Era (BE) year
+  /// Buddhist Era is 543 years ahead of Gregorian calendar
+  static int toBuddhistYear(int gregorianYear) {
+    return gregorianYear + 543;
+  }
+
+  /// Get the display year based on current setting
+  int getDisplayYear(int gregorianYear) {
+    return _useBuddhistEra ? toBuddhistYear(gregorianYear) : gregorianYear;
+  }
+
+  /// Get formatted year string with optional suffix
+  String getFormattedYear(int gregorianYear) {
+    if (_useBuddhistEra) {
+      return '${toBuddhistYear(gregorianYear)}';
+    }
+    return '$gregorianYear';
+  }
 
   Future<void> _loadState() async {
     try {
@@ -25,6 +46,8 @@ class StateProvider extends ChangeNotifier {
       _showSchoolHolidays = AppConfig.enableSchoolHolidays 
           ? (prefs.getBool('show_school_holidays') ?? false)
           : false;
+      // Load Buddhist Era preference
+      _useBuddhistEra = prefs.getBool('use_buddhist_era') ?? false;
       HolidayService.setSelectedState(_selectedState);
       notifyListeners();
     } catch (e) {
@@ -69,6 +92,18 @@ class StateProvider extends ChangeNotifier {
       await prefs.setBool('show_school_holidays', value);
     } catch (e) {
       print('Error saving school holidays preference: $e');
+    }
+  }
+
+  Future<void> setUseBuddhistEra(bool value) async {
+    _useBuddhistEra = value;
+    notifyListeners();
+    
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('use_buddhist_era', value);
+    } catch (e) {
+      print('Error saving Buddhist Era preference: $e');
     }
   }
 

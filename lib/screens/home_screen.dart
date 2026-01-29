@@ -15,9 +15,11 @@ import '../services/holiday_service.dart';
 import '../services/school_holiday_service.dart';
 import '../services/notes_service.dart';
 import '../providers/state_provider.dart';
+import '../providers/language_provider.dart';
 import '../services/notification_service.dart';
 import 'my_notes_screen.dart';
 import '../config/app_config.dart';
+import '../utils/localization.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -244,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  String _getHolidayText(DateTime date, StateProvider stateProvider) {
+  String _getHolidayText(DateTime date, StateProvider stateProvider, String language) {
     final holiday = HolidayService.getHolidayForDate(date);
     final schoolHoliday = stateProvider.showSchoolHolidays 
         ? SchoolHolidayService.getSchoolHolidayForDate(date, stateProvider.selectedState)
@@ -252,24 +254,25 @@ class _HomeScreenState extends State<HomeScreen> {
     
     if (holiday != null && schoolHoliday != null) {
       final types = HolidayService.getTypesForDate(date);
-      final name = holiday.holidayName;
+      final name = holiday.getName(language);
       final holidayText = types != null && types.isNotEmpty ? '$name • ${types.toUpperCase()}' : name;
       return '$holidayText\n🏫 ${schoolHoliday.name}';
     } else if (holiday != null) {
       final types = HolidayService.getTypesForDate(date);
-      final name = holiday.holidayName;
+      final name = holiday.getName(language);
       return types != null && types.isNotEmpty ? '$name • ${types.toUpperCase()}' : name;
     } else if (schoolHoliday != null) {
       return '🏫 ${schoolHoliday.name}';
     }
-    return 'No special Notes';
+    return AppLocalization.getText('no_special_notes', language);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StateProvider>(
-      builder: (context, stateProvider, child) {
+    return Consumer2<StateProvider, LanguageProvider>(
+      builder: (context, stateProvider, languageProvider, child) {
         final color = Theme.of(context).colorScheme;
+        final language = languageProvider.language;
         
         return Scaffold(
           appBar: AppBar(
@@ -278,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    DateFormat.y().format(_anchor),
+                    stateProvider.getFormattedYear(_anchor.year),
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.w600,
@@ -306,7 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      'Holidays',
+                      AppLocalization.getText('holidays', language),
                       style: TextStyle(
                         color: color.onPrimaryContainer,
                         fontWeight: FontWeight.w700,
@@ -339,7 +342,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(Icons.calendar_month),
               ),
               IconButton(
-                tooltip: 'Settings',
+                tooltip: AppLocalization.getText('settings', language),
                 onPressed: () {
                   if (!mounted || !context.mounted) return;
                   Navigator.of(context).push(
@@ -351,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(width: 4),
             ],
           ),
-          drawer: _buildDrawer(context),
+          drawer: _buildDrawer(context, language),
           body: SafeArea(
             child: ListView(
               padding: const EdgeInsets.only(bottom: 24),
@@ -377,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
-                            DateFormat('MMMM yyyy').format(_anchor),
+                            '${DateFormat('MMMM').format(_anchor)} ${stateProvider.getFormattedYear(_anchor.year)}',
                             style: TextStyle(
                               color: color.onPrimaryContainer,
                               fontWeight: FontWeight.w700,
@@ -424,7 +427,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          'Today is ${DateFormat('EEEE, MMMM d, yyyy').format(DateTime.now())}',
+                          language == 'th'
+                              ? 'วันนี้คือ ${DateFormat('EEEE, MMMM d').format(DateTime.now())}, ${stateProvider.getFormattedYear(DateTime.now().year)}'
+                              : 'Today is ${DateFormat('EEEE, MMMM d').format(DateTime.now())}, ${stateProvider.getFormattedYear(DateTime.now().year)}',
                           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                 color: color.primary,
                                 fontWeight: FontWeight.w600,
@@ -477,8 +482,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         _selectedDate != null 
-                            ? '${_selectedDate!.day} ${DateFormat('MMMM yyyy').format(_selectedDate!)}'
-                            : '${DateTime.now().day} ${DateFormat('MMMM yyyy').format(DateTime.now())}',
+                            ? '${_selectedDate!.day} ${DateFormat('MMMM').format(_selectedDate!)} ${stateProvider.getFormattedYear(_selectedDate!.year)}'
+                            : '${DateTime.now().day} ${DateFormat('MMMM').format(DateTime.now())} ${stateProvider.getFormattedYear(DateTime.now().year)}',
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               fontWeight: FontWeight.w600,
                               color: color.onSurface,
@@ -489,7 +494,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Builder(
                         builder: (context) {
                           final date = _selectedDate ?? DateTime.now();
-                          final holidayText = _getHolidayText(date, stateProvider);
+                          final holidayText = _getHolidayText(date, stateProvider, language);
                           final hasHoliday = HolidayService.getHolidayForDate(date) != null || 
                               (stateProvider.showSchoolHolidays && 
                                SchoolHolidayService.getSchoolHolidayForDate(date, stateProvider.selectedState) != null);
@@ -741,7 +746,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
+  Widget _buildDrawer(BuildContext context, String language) {
     final color = Theme.of(context).colorScheme;
     return Drawer(
       child: SafeArea(
@@ -790,7 +795,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Menu',
+                    language == 'th' ? 'ปฏิทินไทย' : 'Thai Calendar',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -804,12 +809,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.home),
-              title: const Text('Home'),
+              title: Text(language == 'th' ? 'หน้าหลัก' : 'Home'),
               onTap: () => Navigator.pop(context),
             ),
             ListTile(
               leading: const Icon(Icons.note),
-              title: const Text('My Notes'),
+              title: Text(AppLocalization.getText('my_notes', language)),
               onTap: () {
                 if (!mounted || !context.mounted) return;
                 Navigator.pop(context);
@@ -822,7 +827,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.info_outline),
-              title: const Text('About us'),
+              title: Text(language == 'th' ? 'เกี่ยวกับเรา' : 'About us'),
               onTap: () {
                 Navigator.pop(context);
                 _showAboutRewardDialog();
@@ -830,7 +835,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.star_rate),
-              title: const Text('Rate App'),
+              title: Text(language == 'th' ? 'ให้คะแนนแอป' : 'Rate App'),
               onTap: () {
                 Navigator.pop(context);
                 _rateApp();
@@ -838,7 +843,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.share),
-              title: const Text('Share'),
+              title: Text(language == 'th' ? 'แชร์' : 'Share'),
               onTap: () async {
                 Navigator.pop(context);
                 final link = '${AppConfig.playStoreUrl}&pcampaignid=web_share';
@@ -848,7 +853,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(child: Container()),
             ListTile(
               leading: const Icon(Icons.exit_to_app),
-              title: const Text('Exit'),
+              title: Text(language == 'th' ? 'ออก' : 'Exit'),
               onTap: () {
                 Navigator.pop(context);
                 // Close the app

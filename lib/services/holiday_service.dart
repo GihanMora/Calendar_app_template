@@ -6,6 +6,7 @@ class Holiday {
   final String date;
   final String weekday;
   final String holidayName;
+  final String holidayNameTH;
   final String type;
   final List<String> states;
 
@@ -13,6 +14,7 @@ class Holiday {
     required this.date,
     required this.weekday,
     required this.holidayName,
+    required this.holidayNameTH,
     required this.type,
     required this.states,
   });
@@ -22,9 +24,19 @@ class Holiday {
       date: json['Date'] ?? '',
       weekday: json['Weekday'] ?? '',
       holidayName: json['Holiday Name'] ?? '',
+      holidayNameTH: json['Holiday Name TH'] ?? json['Holiday Name'] ?? '',
       type: json['Type'] ?? '',
       states: List<String>.from(json['States'] ?? ['ALL']),
     );
+  }
+
+  /// Get the holiday name based on the language code
+  /// Returns Thai name if language is 'th', otherwise English name
+  String getName(String language) {
+    if (language == 'th' && holidayNameTH.isNotEmpty) {
+      return holidayNameTH;
+    }
+    return holidayName;
   }
 
   bool isApplicableForState(String selectedState) {

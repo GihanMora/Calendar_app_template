@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/theme_provider.dart';
 import '../providers/state_provider.dart';
+import '../providers/language_provider.dart';
 import '../services/ads_service.dart';
 import '../services/notification_service.dart';
 import '../config/app_config.dart';
+import '../utils/localization.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -41,11 +43,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<ThemeProvider, StateProvider>(
-      builder: (context, themeProvider, stateProvider, child) {
+    return Consumer3<ThemeProvider, StateProvider, LanguageProvider>(
+      builder: (context, themeProvider, stateProvider, languageProvider, child) {
+        final language = languageProvider.language;
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Settings'),
+            title: Text(AppLocalization.getText('settings', language)),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop(),
@@ -57,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Appearance',
+                  AppLocalization.getText('appearance', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -66,27 +69,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Card(
                   child: ListTile(
                     leading: const Icon(Icons.palette_outlined),
-                    title: const Text('Theme'),
-                    subtitle: Text(_getCurrentThemeName()),
+                    title: Text(AppLocalization.getText('theme', language)),
+                    subtitle: Text(_getCurrentThemeName(language)),
                     trailing: const Icon(Icons.chevron_right),
-                    onTap: () => _showThemeDialog(),
+                    onTap: () => _showThemeDialog(language),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.language_outlined),
+                    title: Text(AppLocalization.getText('language', language)),
+                    subtitle: Text(_getCurrentLanguageName(language)),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => _showLanguageDialog(language),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.calendar_today_outlined),
+                    title: Text(AppLocalization.getText('year_format', language)),
+                    subtitle: Text(_getCurrentYearFormatName(stateProvider, language)),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => _showYearFormatDialog(stateProvider, language),
                   ),
                 ),
                 if (AppConfig.enableStates) ...[
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 8),
                   Card(
                     child: ListTile(
                       leading: const Icon(Icons.location_on_outlined),
-                      title: const Text('State/Territory'),
+                      title: Text(AppLocalization.getText('state_territory', language)),
                       subtitle: Text(stateProvider.selectedStateName),
                       trailing: const Icon(Icons.chevron_right),
-                      onTap: () => _showStateDialog(stateProvider),
+                      onTap: () => _showStateDialog(stateProvider, language),
                     ),
                   ),
                 ],
                 const SizedBox(height: 24),
                 Text(
-                  'Holidays',
+                  AppLocalization.getText('holidays', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -96,15 +119,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Card(
                     child: SwitchListTile(
                       secondary: const Icon(Icons.school_outlined),
-                      title: const Text('Show School Holidays'),
-                      subtitle: const Text('Display school holiday ranges on calendar'),
+                      title: Text(AppLocalization.getText('show_school_holidays', language)),
+                      subtitle: Text(AppLocalization.getText('school_holidays_desc', language)),
                       value: stateProvider.showSchoolHolidays,
                       onChanged: (value) {
                         stateProvider.setShowSchoolHolidays(value);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              value ? 'School holidays enabled' : 'School holidays disabled',
+                              value 
+                                  ? AppLocalization.getText('school_holidays_enabled', language)
+                                  : AppLocalization.getText('school_holidays_disabled', language),
                             ),
                           ),
                         );
@@ -114,7 +139,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
                 const SizedBox(height: 24),
                 Text(
-                  'Notifications',
+                  AppLocalization.getText('notifications', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -125,17 +150,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: [
                       ListTile(
                         leading: const Icon(Icons.notifications_outlined),
-                        title: const Text('Notification Time'),
+                        title: Text(AppLocalization.getText('notification_time', language)),
                         subtitle: Text(
-                          '${_daysBefore} day${_daysBefore != 1 ? 's' : ''} before at ${_notificationTime.format(context)}',
+                          '${_daysBefore} ${_daysBefore != 1 ? AppLocalization.getText('days_before', language) : AppLocalization.getText('day_before', language)} at ${_notificationTime.format(context)}',
                         ),
                         trailing: const Icon(Icons.chevron_right),
-                        onTap: () => _showNotificationTimeDialog(),
+                        onTap: () => _showNotificationTimeDialog(language),
                       ),
                       SwitchListTile(
                         secondary: const Icon(Icons.event),
-                        title: const Text('Notify for All Holidays'),
-                        subtitle: const Text('Get notifications for all public holidays'),
+                        title: Text(AppLocalization.getText('notify_all_holidays', language)),
+                        subtitle: Text(AppLocalization.getText('notify_all_holidays_desc', language)),
                         value: _notifyForAllHolidays,
                         onChanged: (value) async {
                           await NotificationService.saveHolidayNotificationSetting(value);
@@ -148,8 +173,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 SnackBar(
                                   content: Text(
                                     value
-                                        ? 'Holiday notifications enabled'
-                                        : 'Holiday notifications disabled',
+                                        ? AppLocalization.getText('holiday_notifications_enabled', language)
+                                        : AppLocalization.getText('holiday_notifications_disabled', language),
                                   ),
                                 ),
                               );
@@ -164,15 +189,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Card(
                   child: ListTile(
                     leading: const Icon(Icons.bug_report_outlined),
-                    title: const Text('Debug Notifications'),
-                    subtitle: const Text('Check pending notifications and settings'),
+                    title: Text(AppLocalization.getText('debug_notifications', language)),
+                    subtitle: Text(AppLocalization.getText('debug_notifications_desc', language)),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () => _debugNotifications(context),
                   ),
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'About',
+                  AppLocalization.getText('about', language),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -181,8 +206,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Card(
                   child: ListTile(
                     leading: const Icon(Icons.info_outline),
-                    title: const Text('Calendar'),
-                    subtitle: const Text('Version 1.0.0'),
+                    title: Text(AppLocalization.getText('app_title', language)),
+                    subtitle: Text('${AppLocalization.getText('version', language)} 1.0.0'),
                   ),
                 ),
               ],
@@ -193,55 +218,167 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  String _getCurrentThemeName() {
+  String _getCurrentThemeName(String language) {
     final themeMode = Provider.of<ThemeProvider>(context, listen: false).themeMode;
     switch (themeMode) {
       case ThemeMode.system:
-        return 'System Default';
+        return AppLocalization.getText('system_default', language);
       case ThemeMode.light:
-        return 'Light Theme';
+        return AppLocalization.getText('light_theme', language);
       case ThemeMode.dark:
-        return 'Dark Theme';
+        return AppLocalization.getText('dark_theme', language);
     }
   }
 
-  void _showThemeDialog() {
+  String _getCurrentLanguageName(String language) {
+    return language == 'th' 
+        ? AppLocalization.getText('thai', language)
+        : AppLocalization.getText('english', language);
+  }
+
+  void _showThemeDialog(String language) {
     if (!mounted) return;
     
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Theme'),
+        title: Text(AppLocalization.getText('theme', language)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             RadioListTile<ThemeMode>(
-              title: const Text('System Default'),
+              title: Text(AppLocalization.getText('system_default', language)),
               value: ThemeMode.system,
               groupValue: _getCurrentThemeMode(),
-              onChanged: (value) => _changeTheme(value!),
+              onChanged: (value) => _changeTheme(value!, language),
             ),
             RadioListTile<ThemeMode>(
-              title: const Text('Light Theme'),
+              title: Text(AppLocalization.getText('light_theme', language)),
               value: ThemeMode.light,
               groupValue: _getCurrentThemeMode(),
-              onChanged: (value) => _changeTheme(value!),
+              onChanged: (value) => _changeTheme(value!, language),
             ),
             RadioListTile<ThemeMode>(
-              title: const Text('Dark Theme'),
+              title: Text(AppLocalization.getText('dark_theme', language)),
               value: ThemeMode.dark,
               groupValue: _getCurrentThemeMode(),
-              onChanged: (value) => _changeTheme(value!),
+              onChanged: (value) => _changeTheme(value!, language),
             ),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Close'),
+            child: Text(AppLocalization.getText('close', language)),
           ),
         ],
       ),
+    );
+  }
+
+  void _showLanguageDialog(String language) {
+    if (!mounted) return;
+    
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(AppLocalization.getText('language', language)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RadioListTile<String>(
+              title: const Text('English'),
+              value: 'en',
+              groupValue: _getCurrentLanguage(),
+              onChanged: (value) => _changeLanguage(value!, language),
+            ),
+            RadioListTile<String>(
+              title: const Text('ไทย (Thai)'),
+              value: 'th',
+              groupValue: _getCurrentLanguage(),
+              onChanged: (value) => _changeLanguage(value!, language),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(AppLocalization.getText('close', language)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _getCurrentLanguage() {
+    return Provider.of<LanguageProvider>(context, listen: false).language;
+  }
+
+  void _changeLanguage(String newLanguage, String currentLanguage) async {
+    if (newLanguage == currentLanguage) {
+      Navigator.of(context).pop();
+      return;
+    }
+
+    Navigator.of(context).pop();
+    Provider.of<LanguageProvider>(context, listen: false).setLanguage(newLanguage);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${AppLocalization.getText('language_changed', newLanguage)} ${newLanguage == 'th' ? 'ไทย' : 'English'}')),
+    );
+  }
+
+  String _getCurrentYearFormatName(StateProvider stateProvider, String language) {
+    return stateProvider.useBuddhistEra 
+        ? AppLocalization.getText('buddhist_era', language)
+        : AppLocalization.getText('international', language);
+  }
+
+  void _showYearFormatDialog(StateProvider stateProvider, String language) {
+    if (!mounted) return;
+    
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(AppLocalization.getText('year_format', language)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RadioListTile<bool>(
+              title: Text(AppLocalization.getText('buddhist_era', language)),
+              subtitle: Text(language == 'th' ? 'ปี ${StateProvider.toBuddhistYear(DateTime.now().year)}' : 'Year ${StateProvider.toBuddhistYear(DateTime.now().year)}'),
+              value: true,
+              groupValue: stateProvider.useBuddhistEra,
+              onChanged: (value) => _changeYearFormat(stateProvider, value!, language),
+            ),
+            RadioListTile<bool>(
+              title: Text(AppLocalization.getText('international', language)),
+              subtitle: Text(language == 'th' ? 'ปี ${DateTime.now().year}' : 'Year ${DateTime.now().year}'),
+              value: false,
+              groupValue: stateProvider.useBuddhistEra,
+              onChanged: (value) => _changeYearFormat(stateProvider, value!, language),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(AppLocalization.getText('close', language)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _changeYearFormat(StateProvider stateProvider, bool useBuddhistEra, String language) {
+    if (useBuddhistEra == stateProvider.useBuddhistEra) {
+      Navigator.of(context).pop();
+      return;
+    }
+
+    Navigator.of(context).pop();
+    stateProvider.setUseBuddhistEra(useBuddhistEra);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${AppLocalization.getText('year_format_changed', language)} ${useBuddhistEra ? AppLocalization.getText('buddhist_era', language) : AppLocalization.getText('international', language)}')),
     );
   }
 
@@ -249,7 +386,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Provider.of<ThemeProvider>(context, listen: false).themeMode;
   }
 
-  void _changeTheme(ThemeMode themeMode) {
+  void _changeTheme(ThemeMode themeMode, String language) {
     if (!mounted) return;
     
     final current = _getCurrentThemeMode();
@@ -265,13 +402,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         Navigator.of(context).pop();
       }
       _showRewardDialog(
-        title: 'Theme change',
-        message: 'In order to do this, please watch a rewarded ad.',
+        title: AppLocalization.getText('theme_change', language),
+        message: AppLocalization.getText('watch_ad_message', language),
+        language: language,
         onRewardOk: () {
           if (mounted && context.mounted) {
             Provider.of<ThemeProvider>(context, listen: false).setThemeMode(themeMode);
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Theme changed to ${_getThemeName(themeMode)}')),
+              SnackBar(content: Text('${AppLocalization.getText('theme_changed', language)} ${_getThemeName(themeMode, language)}')),
             );
           }
         },
@@ -282,12 +420,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       Provider.of<ThemeProvider>(context, listen: false).setThemeMode(themeMode);
       Navigator.of(context).pop();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Theme changed to ${_getThemeName(themeMode)}')),
+        SnackBar(content: Text('${AppLocalization.getText('theme_changed', language)} ${_getThemeName(themeMode, language)}')),
       );
     }
   }
 
-  Future<void> _showRewardDialog({required String title, required String message, required VoidCallback onRewardOk}) async {
+  Future<void> _showRewardDialog({required String title, required String message, required String language, required VoidCallback onRewardOk}) async {
     if (!mounted) return;
     
     final confirmed = await showDialog<bool>(
@@ -298,11 +436,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalization.getText('cancel', language)),
           ),
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: const Text('Watch Ad'),
+            child: Text(AppLocalization.getText('watch_ad', language)),
           ),
         ],
       ),
@@ -315,20 +453,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
       } else {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Ad not available. Please try again later.')),
+            SnackBar(content: Text(AppLocalization.getText('ad_not_available', language))),
           );
         }
       }
     }
   }
 
-  void _showStateDialog(StateProvider stateProvider) {
+  void _showStateDialog(StateProvider stateProvider, String language) {
     if (!mounted) return;
     
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Select State/Territory'),
+        title: Text(AppLocalization.getText('select_state', language)),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -344,7 +482,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     if (mounted && context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Showing holidays for ${state['name']}'),
+                          content: Text('${AppLocalization.getText('showing_holidays_for', language)} ${state['name']}'),
                         ),
                       );
                     }
@@ -357,25 +495,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Close'),
+            child: Text(AppLocalization.getText('close', language)),
           ),
         ],
       ),
     );
   }
 
-  String _getThemeName(ThemeMode mode) {
+  String _getThemeName(ThemeMode mode, String language) {
     switch (mode) {
       case ThemeMode.system:
-        return 'System Default';
+        return AppLocalization.getText('system_default', language);
       case ThemeMode.light:
-        return 'Light Theme';
+        return AppLocalization.getText('light_theme', language);
       case ThemeMode.dark:
-        return 'Dark Theme';
+        return AppLocalization.getText('dark_theme', language);
     }
   }
 
-  Future<void> _showNotificationTimeDialog() async {
+  Future<void> _showNotificationTimeDialog(String language) async {
     if (!mounted) return;
     
     int daysBefore = _daysBefore;
@@ -387,14 +525,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return StatefulBuilder(
           builder: (dialogContext, setDialogState) {
             return AlertDialog(
-              title: const Text('Notification Settings'),
+              title: Text(AppLocalization.getText('notification_settings', language)),
               content: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Days before event',
+                      AppLocalization.getText('days_before_event', language),
                       style: Theme.of(dialogContext).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 8),
@@ -406,7 +544,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             min: 0,
                             max: 7,
                             divisions: 7,
-                            label: '$daysBefore day${daysBefore != 1 ? 's' : ''}',
+                            label: '$daysBefore ${daysBefore != 1 ? AppLocalization.getText('days_before', language) : AppLocalization.getText('day_before', language)}',
                             onChanged: (value) {
                               setDialogState(() {
                                 daysBefore = value.toInt();
@@ -426,7 +564,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Time',
+                      AppLocalization.getText('time', language),
                       style: Theme.of(dialogContext).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 8),
@@ -460,14 +598,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(dialogContext).pop(),
-                  child: const Text('Cancel'),
+                  child: Text(AppLocalization.getText('cancel', language)),
                 ),
                 TextButton(
                   onPressed: () => Navigator.of(dialogContext).pop({
                     'daysBefore': daysBefore,
                     'time': selectedTime,
                   }),
-                  child: const Text('Save'),
+                  child: Text(AppLocalization.getText('save', language)),
                 ),
               ],
             );
@@ -494,7 +632,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Notification settings saved')),
+            SnackBar(content: Text(AppLocalization.getText('notification_settings_saved', language))),
           );
         }
       }

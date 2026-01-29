@@ -7,6 +7,7 @@ import 'theme.dart';
 import 'screens/home_screen.dart';
 import 'providers/theme_provider.dart';
 import 'providers/state_provider.dart';
+import 'providers/language_provider.dart';
 import 'services/notification_service.dart';
 import 'services/notes_service.dart';
 import 'config/app_config.dart';
@@ -76,6 +77,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           providers: [
             ChangeNotifierProvider(create: (context) => ThemeProvider()),
             ChangeNotifierProvider(create: (context) => StateProvider()),
+            ChangeNotifierProvider(create: (context) => LanguageProvider()),
           ],
           child: Consumer<ThemeProvider>(
             builder: (context, themeProvider, child) {
