@@ -1,82 +1,5 @@
 [
   {
-    "Date": "2025-01-01",
-    "Weekday": "Wednesday",
-    "Holiday Name": "New Year's Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-01-20",
-    "Weekday": "Monday",
-    "Holiday Name": "Martin Luther King Jr. Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-02-17",
-    "Weekday": "Monday",
-    "Holiday Name": "Presidents' Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-05-26",
-    "Weekday": "Monday",
-    "Holiday Name": "Memorial Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-06-19",
-    "Weekday": "Thursday",
-    "Holiday Name": "Juneteenth",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-07-04",
-    "Weekday": "Friday",
-    "Holiday Name": "Independence Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-09-01",
-    "Weekday": "Monday",
-    "Holiday Name": "Labor Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-10-13",
-    "Weekday": "Monday",
-    "Holiday Name": "Columbus Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-11-11",
-    "Weekday": "Tuesday",
-    "Holiday Name": "Veterans Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-11-27",
-    "Weekday": "Thursday",
-    "Holiday Name": "Thanksgiving Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
-    "Date": "2025-12-25",
-    "Weekday": "Thursday",
-    "Holiday Name": "Christmas Day",
-    "Type": "Federal",
-    "States": ["ALL"]
-  },
-  {
     "Date": "2026-01-01",
     "Weekday": "Thursday",
     "Holiday Name": "New Year's Day",
@@ -91,10 +14,66 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2026-02-14",
+    "Weekday": "Saturday",
+    "Holiday Name": "Valentine's Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2026-02-16",
     "Weekday": "Monday",
-    "Holiday Name": "Presidents' Day",
+    "Holiday Name": "Presidents' Day (Washington's Birthday)",
     "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-03-17",
+    "Weekday": "Tuesday",
+    "Holiday Name": "St. Patrick's Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-03",
+    "Weekday": "Friday",
+    "Holiday Name": "Good Friday",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-05",
+    "Weekday": "Sunday",
+    "Holiday Name": "Easter Sunday",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-06",
+    "Weekday": "Monday",
+    "Holiday Name": "Easter Monday",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-04-15",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Tax Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-05-05",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Cinco de Mayo",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-05-10",
+    "Weekday": "Sunday",
+    "Holiday Name": "Mother's Day",
+    "Type": "Observance",
     "States": ["ALL"]
   },
   {
@@ -105,9 +84,30 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2026-06-14",
+    "Weekday": "Sunday",
+    "Holiday Name": "Flag Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2026-06-19",
     "Weekday": "Friday",
-    "Holiday Name": "Juneteenth",
+    "Holiday Name": "Juneteenth National Independence Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-06-21",
+    "Weekday": "Sunday",
+    "Holiday Name": "Father's Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-07-03",
+    "Weekday": "Friday",
+    "Holiday Name": "Independence Day (observed)",
     "Type": "Federal",
     "States": ["ALL"]
   },
@@ -133,6 +133,20 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2026-10-31",
+    "Weekday": "Saturday",
+    "Holiday Name": "Halloween",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-11-03",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Election Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2026-11-11",
     "Weekday": "Wednesday",
     "Holiday Name": "Veterans Day",
@@ -147,10 +161,38 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2026-11-27",
+    "Weekday": "Friday",
+    "Holiday Name": "Day After Thanksgiving",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-24",
+    "Weekday": "Thursday",
+    "Holiday Name": "Christmas Eve",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2026-12-25",
     "Weekday": "Friday",
     "Holiday Name": "Christmas Day",
     "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-26",
+    "Weekday": "Saturday",
+    "Holiday Name": "Day After Christmas Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2026-12-31",
+    "Weekday": "Thursday",
+    "Holiday Name": "New Year's Eve",
+    "Type": "Observance",
     "States": ["ALL"]
   },
   {
@@ -168,10 +210,66 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2027-02-14",
+    "Weekday": "Sunday",
+    "Holiday Name": "Valentine's Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2027-02-15",
     "Weekday": "Monday",
-    "Holiday Name": "Presidents' Day",
+    "Holiday Name": "Presidents' Day (Washington's Birthday)",
     "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-03-17",
+    "Weekday": "Wednesday",
+    "Holiday Name": "St. Patrick's Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-03-26",
+    "Weekday": "Friday",
+    "Holiday Name": "Good Friday",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-03-28",
+    "Weekday": "Sunday",
+    "Holiday Name": "Easter Sunday",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-03-29",
+    "Weekday": "Monday",
+    "Holiday Name": "Easter Monday",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-04-15",
+    "Weekday": "Thursday",
+    "Holiday Name": "Tax Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-05-05",
+    "Weekday": "Wednesday",
+    "Holiday Name": "Cinco de Mayo",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-05-09",
+    "Weekday": "Sunday",
+    "Holiday Name": "Mother's Day",
+    "Type": "Observance",
     "States": ["ALL"]
   },
   {
@@ -182,16 +280,44 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2027-06-14",
+    "Weekday": "Monday",
+    "Holiday Name": "Flag Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-06-18",
+    "Weekday": "Friday",
+    "Holiday Name": "Juneteenth (observed)",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2027-06-19",
     "Weekday": "Saturday",
-    "Holiday Name": "Juneteenth",
+    "Holiday Name": "Juneteenth National Independence Day",
     "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-06-20",
+    "Weekday": "Sunday",
+    "Holiday Name": "Father's Day",
+    "Type": "Observance",
     "States": ["ALL"]
   },
   {
     "Date": "2027-07-04",
     "Weekday": "Sunday",
     "Holiday Name": "Independence Day",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-07-05",
+    "Weekday": "Monday",
+    "Holiday Name": "Independence Day (observed)",
     "Type": "Federal",
     "States": ["ALL"]
   },
@@ -210,6 +336,20 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2027-10-31",
+    "Weekday": "Sunday",
+    "Holiday Name": "Halloween",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-11-02",
+    "Weekday": "Tuesday",
+    "Holiday Name": "Election Day",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2027-11-11",
     "Weekday": "Thursday",
     "Holiday Name": "Veterans Day",
@@ -224,10 +364,45 @@
     "States": ["ALL"]
   },
   {
+    "Date": "2027-11-26",
+    "Weekday": "Friday",
+    "Holiday Name": "Day After Thanksgiving",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-24",
+    "Weekday": "Friday",
+    "Holiday Name": "Christmas Day (observed)",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-24",
+    "Weekday": "Friday",
+    "Holiday Name": "Christmas Eve",
+    "Type": "Observance",
+    "States": ["ALL"]
+  },
+  {
     "Date": "2027-12-25",
     "Weekday": "Saturday",
     "Holiday Name": "Christmas Day",
     "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-31",
+    "Weekday": "Friday",
+    "Holiday Name": "New Year's Day (observed)",
+    "Type": "Federal",
+    "States": ["ALL"]
+  },
+  {
+    "Date": "2027-12-31",
+    "Weekday": "Friday",
+    "Holiday Name": "New Year's Eve",
+    "Type": "Observance",
     "States": ["ALL"]
   }
 ]

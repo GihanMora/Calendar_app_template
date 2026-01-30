@@ -89,10 +89,14 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
       });
     }
 
-    // Scroll to most recent holiday after build
+    // Scroll to most recent holiday after list is built (not top)
     if (_mostRecentHoliday != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        _scrollToMostRecentHoliday();
+        Future.delayed(const Duration(milliseconds: 400), () {
+          if (mounted && _mostRecentHolidayKey.currentContext != null) {
+            _scrollToMostRecentHoliday();
+          }
+        });
       });
     }
   }
@@ -123,7 +127,7 @@ class _PublicHolidaysScreenState extends State<PublicHolidaysScreen> {
         _mostRecentHolidayKey.currentContext!,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-        alignment: 0.1, // Position near top of viewport
+        alignment: 0.2, // Latest holiday near top of viewport (not all the way top)
       );
     }
   }
