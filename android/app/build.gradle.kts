@@ -29,7 +29,7 @@ fun readConfigFromJson(): Map<String, String> {
         "appName" to "US Calendar",
         "packageName" to "com.gihan.uscalendar",
         "applicationId" to "com.gihan.uscalendar",
-        "admobAppId" to "ca-app-pub-3940256099942544~3347511713"
+        "admobAppId" to "ca-app-pub-5202253201958912~5899314341"
     )
     
     if (!configFile.exists()) {
@@ -58,7 +58,7 @@ val appConfig = readConfigFromJson()
 val appNameFromConfig = appConfig["appName"] ?: "US Calendar"
 val packageNameFromConfig = appConfig["packageName"] ?: "com.gihan.uscalendar"
 val applicationIdFromConfig = appConfig["applicationId"] ?: "com.gihan.uscalendar"
-val admobAppIdFromConfig = appConfig["admobAppId"] ?: "ca-app-pub-3940256099942544~3347511713"
+val admobAppIdFromConfig = appConfig["admobAppId"] ?: "ca-app-pub-5202253201958912~5899314341"
 
 android {
     // Namespace and applicationId are read from config/country_x.json (single source of truth)

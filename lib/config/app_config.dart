@@ -21,11 +21,11 @@ class AppConfig {
   static const bool _defaultEnableStates = true;
   static const bool _defaultEnableSchoolHolidays = true;
   static const String _defaultPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.gihan.uscalendar';
-  static const String _defaultAdmobAppId = 'ca-app-pub-3940256099942544~3347511713';
-  static const String _defaultBannerAdUnitId = 'ca-app-pub-5202253201958912/6764035035';
-  static const String _defaultInterstitialAdUnitId = 'ca-app-pub-5202253201958912/4746790831';
-  static const String _defaultRewardedAdUnitId = 'ca-app-pub-5202253201958912/9065289963';
-  static const String _defaultNativeAdUnitId = 'ca-app-pub-5202253201958912/4529194873';
+  static const String _defaultAdmobAppId = 'ca-app-pub-5202253201958912~5899314341';
+  static const String _defaultBannerAdUnitId = 'ca-app-pub-5202253201958912/2626718518';
+  static const String _defaultInterstitialAdUnitId = 'ca-app-pub-5202253201958912/3827393195';
+  static const String _defaultRewardedAdUnitId = 'ca-app-pub-5202253201958912/2626718518';
+  static const String _defaultNativeAdUnitId = 'ca-app-pub-5202253201958912/3161178784';
   
   /// Initialize config by loading from JSON file
   /// Must be called before using any AppConfig values
