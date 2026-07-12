@@ -1,49 +1,101 @@
+# Codemagic CI/CD configuration for US Calendar (iOS -> TestFlight).
+# Docs: https://docs.codemagic.io/yaml/yaml-getting-started/
+#
+# ── ONE-TIME SETUP IN THE CODEMAGIC UI ─────────────────────────────────────────
+# 1. Team settings -> Integrations -> App Store Connect: API key named exactly
+#    `codemagic_appstore` (role App Manager).
+# 2. App Store Connect -> Apps: app record for bundle id com.gihan.uscalendar.
+#    Paste its numeric Apple ID into APP_STORE_APPLE_ID below to enable automatic
+#    build-number increment (recommended so uploads never clash with earlier builds).
+# Signing is automatic: `fetch-signing-files ... --create` registers the Bundle ID
+# and creates/reuses the distribution certificate + provisioning profile from
+# signing/codemagic_cert_key.pem (the shared key used across the calendar apps).
+# ───────────────────────────────────────────────────────────────────────────────
+
 workflows:
   ios-testflight:
     name: iOS - TestFlight
     instance_type: mac_mini_m2
     max_build_duration: 60
+
     integrations:
       app_store_connect: codemagic_appstore
+
     environment:
       vars:
         BUNDLE_ID: "com.gihan.uscalendar"
+        # Paste the app's numeric App Store Connect Apple ID here to enable automatic
+        # build-number increment. Leave empty to fall back to the pubspec build number.
+        APP_STORE_APPLE_ID: ""
       flutter: stable
       xcode: latest
       cocoapods: default
+
     cache:
       cache_paths:
         - $HOME/.pub-cache
         - $HOME/Library/Caches/CocoaPods
+
     scripts:
       - name: Initialize keychain
-        script: keychain initialize
+        script: |
+          keychain initialize
+
       - name: Fetch signing files (creates cert + profile if missing)
         script: |
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --certificate-key @file:$CM_BUILD_DIR/signing/codemagic_cert_key.pem \
             --create
+
       - name: Add certificates to keychain
-        script: keychain add-certificates
+        script: |
+          keychain add-certificates
+
       - name: Apply provisioning profiles to Xcode project
-        script: xcode-project use-profiles
+        script: |
+          xcode-project use-profiles
+
+      - name: Disable Swift Package Manager
+        script: |
+          # google_mobile_ads uses CocoaPods while webview_flutter_wkwebview (pulled in
+          # transitively) ships as an SPM package; with SPM enabled `pod install` breaks.
+          # Force CocoaPods-only by turning SPM off on the fresh Codemagic Flutter install.
+          flutter config --no-enable-swift-package-manager
+
       - name: Get Flutter packages
-        script: flutter pub get
+        script: |
+          flutter pub get
+
       - name: Install CocoaPods dependencies
-        script: find . -name "Podfile" -execdir pod install \;
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+
       - name: Flutter build IPA
         script: |
-          flutter build ipa --release \
-            --build-number=$PROJECT_BUILD_NUMBER \
-            --export-options-plist=/Users/builder/export_options.plist
+          # Version name comes from pubspec.yaml. Build number is auto-incremented from
+          # the latest TestFlight build (when APP_STORE_APPLE_ID is set) so uploads never
+          # clash; otherwise it falls back to the pubspec build number.
+          if [ -n "$APP_STORE_APPLE_ID" ]; then
+            BUILD_NUMBER=$(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" 2>/dev/null || echo 0) + 1))
+            flutter build ipa --release \
+              --build-number=$BUILD_NUMBER \
+              --export-options-plist=/Users/builder/export_options.plist
+          else
+            flutter build ipa --release \
+              --export-options-plist=/Users/builder/export_options.plist
+          fi
+
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+
     publishing:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+
       email:
         recipients:
           - gihangamage2015@gmail.com
