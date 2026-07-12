@@ -24,9 +24,10 @@ workflows:
     environment:
       vars:
         BUNDLE_ID: "com.gihan.uscalendar"
-        # Paste the app's numeric App Store Connect Apple ID here to enable automatic
-        # build-number increment. Leave empty to fall back to the pubspec build number.
-        APP_STORE_APPLE_ID: ""
+        # To enable automatic build-number increment, add the app's numeric App Store
+        # Connect Apple ID as a var here, e.g.  APP_STORE_APPLE_ID: "1234567890"
+        # (Codemagic rejects an empty-string var, so it is left out until you have the ID;
+        # while unset, the build falls back to the pubspec build number.)
       flutter: stable
       xcode: latest
       cocoapods: default
