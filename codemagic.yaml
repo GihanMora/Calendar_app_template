@@ -24,10 +24,9 @@ workflows:
     environment:
       vars:
         BUNDLE_ID: "com.gihan.thaicalendar"
-        # To enable automatic build-number increment, add the app's numeric App Store
-        # Connect Apple ID as a var here, e.g.  APP_STORE_APPLE_ID: "1234567890"
-        # (Codemagic rejects an empty-string var, so it is left out until you have the ID;
-        # while unset, the build falls back to the pubspec build number.)
+        # Numeric App Store Connect Apple ID for Thai Calendar. Enables automatic
+        # build-number increment (latest TestFlight build + 1) so uploads never clash.
+        APP_STORE_APPLE_ID: "6790114451"
       flutter: stable
       xcode: latest
       cocoapods: default
