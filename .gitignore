@@ -117,6 +117,13 @@ key.properties
 android/key.properties
 android/app/upload-keystore.jks
 
+# iOS signing secrets — kept out of git EXCEPT the shared Codemagic key,
+# which is intentionally committed (private repo) for script-based signing.
+*.p8
+*.p12
+*.pem
+!signing/codemagic_cert_key.pem
+
 # Exclude local configuration
 local.properties
 android/local.properties

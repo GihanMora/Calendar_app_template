@@ -60,6 +60,10 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+# Note: Swift Package Manager is disabled for iOS via a `flutter config
+# --no-enable-swift-package-manager` step in codemagic.yaml (the pubspec
+# `flutter: config:` key is rejected by this Flutter version), which resolves
+# the google_mobile_ads (CocoaPods) vs webview_flutter_wkwebview (SPM) conflict.
 flutter:
 
   # The following line ensures that the Material Icons font is
