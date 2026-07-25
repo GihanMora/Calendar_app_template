@@ -74,18 +74,26 @@ workflows:
 
       - name: Flutter build IPA
         script: |
-          # Version name comes from pubspec.yaml. Build number is auto-incremented from
-          # the latest TestFlight build (when APP_STORE_APPLE_ID is set) so uploads never
-          # clash; otherwise it falls back to the pubspec build number.
+          # Version name comes from pubspec.yaml. The build number must be
+          # strictly higher than any build already uploaded for this marketing
+          # version, or App Store Connect rejects it ("bundle version must be
+          # higher than the previously uploaded version").
+          #
+          # Preferred: when APP_STORE_APPLE_ID is set, use the latest TestFlight
+          # build number + 1 (keeps build numbers clean and sequential).
+          #
+          # Fallback (no Apple ID): use the Unix timestamp as the build number.
+          # It increases every second, so every upload is guaranteed higher than
+          # the last with no manual pubspec bumps. `date +%s` stays below the
+          # 2^31 CFBundleVersion ceiling until 2038.
           if [ -n "$APP_STORE_APPLE_ID" ]; then
             BUILD_NUMBER=$(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" 2>/dev/null || echo 0) + 1))
-            flutter build ipa --release \
-              --build-number=$BUILD_NUMBER \
-              --export-options-plist=/Users/builder/export_options.plist
           else
-            flutter build ipa --release \
-              --export-options-plist=/Users/builder/export_options.plist
+            BUILD_NUMBER=$(date +%s)
           fi
+          flutter build ipa --release \
+            --build-number=$BUILD_NUMBER \
+            --export-options-plist=/Users/builder/export_options.plist
 
     artifacts:
       - build/ios/ipa/*.ipa
