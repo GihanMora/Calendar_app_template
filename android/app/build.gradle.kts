@@ -97,10 +97,16 @@ android {
 
     signingConfigs {
         create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = keystoreProperties["storeFile"]?.let { rootProject.file(it) }
-            storePassword = keystoreProperties["storePassword"] as String
+            // Only wire up release signing when key.properties is present
+            // (e.g. on the build machine / Codemagic). Fresh clones without it
+            // can still build & run debug without this block crashing at
+            // evaluation time on the `as String` casts.
+            if (keystorePropertiesFile.exists()) {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                storeFile = keystoreProperties["storeFile"]?.let { rootProject.file(it) }
+                storePassword = keystoreProperties["storePassword"] as String
+            }
         }
     }
 
