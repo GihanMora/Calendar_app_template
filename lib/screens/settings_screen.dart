@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -53,7 +54,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
+            child: SingleChildScrollView(
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -84,14 +86,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                 ],
-                const SizedBox(height: 24),
-                Text(
-                  'Holidays',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                // The whole Holidays section only makes sense when there is
+                // something to show under it. Its only control is the school-
+                // holidays toggle, so gate the header too — otherwise (when
+                // enableSchoolHolidays is false) an empty "Holidays" header
+                // renders with nothing beneath it.
                 if (AppConfig.enableSchoolHolidays) ...[
+                  const SizedBox(height: 24),
+                  Text(
+                    'Holidays',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   Card(
                     child: SwitchListTile(
@@ -160,16 +167,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
-                Card(
-                  child: ListTile(
-                    leading: const Icon(Icons.bug_report_outlined),
-                    title: const Text('Debug Notifications'),
-                    subtitle: const Text('Check pending notifications and settings'),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: () => _debugNotifications(context),
+                // Developer-only diagnostic — hidden from release builds so it
+                // never ships in the production settings menu.
+                if (kDebugMode) ...[
+                  const SizedBox(height: 16),
+                  Card(
+                    child: ListTile(
+                      leading: const Icon(Icons.bug_report_outlined),
+                      title: const Text('Debug Notifications'),
+                      subtitle: const Text('Check pending notifications and settings'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => _debugNotifications(context),
+                    ),
                   ),
-                ),
+                ],
                 const SizedBox(height: 24),
                 Text(
                   'About',
@@ -186,6 +197,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ),
               ],
+              ),
             ),
           ),
         );
