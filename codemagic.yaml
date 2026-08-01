@@ -111,3 +111,71 @@ workflows:
         notify:
           success: true
           failure: true
+
+  android-release:
+    name: Android Release (Play Store)
+    # Linux instances require billing to be enabled on personal accounts.
+    # mac_mini_m2 draws from the same free 500 min/month pool as the iOS
+    # workflow and can build Android app bundles just fine.
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+
+    environment:
+      android_signing:
+        - us_calendar_keystore
+      groups:
+        - google_play_credentials
+      vars:
+        PACKAGE_NAME: "com.gihan.uscalendar"
+      flutter: stable
+
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+
+    scripts:
+      - name: Set up key.properties from the Codemagic-managed keystore
+        script: |
+          cat > "$CM_BUILD_DIR/android/key.properties" <<EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPassword=$CM_KEY_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=$CM_KEYSTORE_PATH
+          EOF
+
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+
+      - name: Build appbundle
+        script: |
+          # Google Play requires each upload to have a strictly higher versionCode
+          # than the last. Ask Play for the latest one across all tracks and bump it,
+          # falling back to Codemagic's own build counter if this is the very first
+          # API-driven upload.
+          LATEST_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME" 2>/dev/null || echo "")
+          if [ -z "$LATEST_BUILD_NUMBER" ]; then
+            UPDATED_BUILD_NUMBER=$BUILD_NUMBER
+          else
+            UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
+          fi
+          flutter build appbundle --release --build-number=$UPDATED_BUILD_NUMBER
+
+    artifacts:
+      - build/app/outputs/bundle/release/*.aab
+      - flutter_drive.log
+
+    publishing:
+      google_play:
+        credentials: $GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS
+        track: production
+        # rollout_fraction omitted on purpose -> releases to 100% of users
+        # immediately. Add `rollout_fraction: 0.2` (etc.) here if you'd rather
+        # stage it, or change `track:` to `internal`/`beta` to test first.
+
+      email:
+        recipients:
+          - gihangamage2015@gmail.com
+        notify:
+          success: true
+          failure: true
