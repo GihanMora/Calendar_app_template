@@ -128,7 +128,10 @@ workflows:
 
     environment:
       android_signing:
-        - thai_calendar_keystore
+        # Same physical upload key used to sign all the calendar app variants
+        # (SL/US/Thai) — already uploaded to Codemagic under this reference,
+        # no new keystore upload needed.
+        - srilankan_calendar_keystore
       groups:
         - google_play_credentials
       vars:
