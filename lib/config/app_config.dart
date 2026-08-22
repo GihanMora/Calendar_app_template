@@ -29,17 +29,12 @@ class AppConfig {
   static const String _defaultNativeAdUnitId = 'ca-app-pub-5202253201958912/1768932415';
 
   // AdMob ad units are platform-specific: the ids above/JSON are the ANDROID
-  // units. iOS needs its own units + app id. These are Google's official iOS
-  // TEST unit ids used as interim placeholders so iOS serves ads and is
-  // swap-ready; they pair with the TEST GADApplicationIdentifier currently in
-  // ios/Runner/Info.plist.
-  // TODO(iOS ads): replace all four with the real iOS AdMob units AND set the
-  //   real iOS app id in ios/Runner/Info.plist (GADApplicationIdentifier)
-  //   before an iOS release.
-  static const String _iosBannerAdUnitId = 'ca-app-pub-3940256099942544/2934735716';
-  static const String _iosInterstitialAdUnitId = 'ca-app-pub-3940256099942544/4411468910';
-  static const String _iosRewardedAdUnitId = 'ca-app-pub-3940256099942544/1712485313';
-  static const String _iosNativeAdUnitId = 'ca-app-pub-3940256099942544/3986624511';
+  // units. These are the real iOS units, pairing with the real iOS
+  // GADApplicationIdentifier in ios/Runner/Info.plist.
+  static const String _iosBannerAdUnitId = 'ca-app-pub-5202253201958912/8467574533';
+  static const String _iosInterstitialAdUnitId = 'ca-app-pub-5202253201958912/8467574533';
+  static const String _iosRewardedAdUnitId = 'ca-app-pub-5202253201958912/1902166180';
+  static const String _iosNativeAdUnitId = 'ca-app-pub-5202253201958912/1475780456';
   
   /// Initialize config by loading from JSON file
   /// Must be called before using any AppConfig values
