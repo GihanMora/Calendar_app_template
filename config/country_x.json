@@ -14,6 +14,11 @@
   "interstitialAdUnitId": "ca-app-pub-5202253201958912/3827393195",
   "rewardedAdUnitId": "ca-app-pub-5202253201958912/2626718518",
   "nativeAdUnitId": "ca-app-pub-5202253201958912/3161178784",
+  "iosAdmobAppId": "ca-app-pub-5202253201958912~5276741312",
+  "iosBannerAdUnitId": "ca-app-pub-5202253201958912/4037480131",
+  "iosInterstitialAdUnitId": "ca-app-pub-5202253201958912/2724398463",
+  "iosRewardedAdUnitId": "ca-app-pub-5202253201958912/1411316793",
+  "iosNativeAdUnitId": "ca-app-pub-5202253201958912/6763715828",
   "regions": [
     { "code": "ALL", "name": "All States" },
     { "code": "AL", "name": "Alabama" },

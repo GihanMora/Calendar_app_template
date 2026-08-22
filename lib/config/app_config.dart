@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
+import 'dart:io' show Platform;
 import 'package:flutter/services.dart';
 
 /// App Configuration
@@ -27,19 +27,11 @@ class AppConfig {
   static const String _defaultInterstitialAdUnitId = 'ca-app-pub-5202253201958912/3827393195';
   static const String _defaultRewardedAdUnitId = 'ca-app-pub-5202253201958912/2626718518';
   static const String _defaultNativeAdUnitId = 'ca-app-pub-5202253201958912/3161178784';
-
-  // AdMob ad units are platform-specific: the ids above/JSON are the ANDROID
-  // units. iOS needs its own units + app id. These are Google's official iOS
-  // TEST unit ids used as interim placeholders so iOS serves ads and is
-  // swap-ready; they pair with the TEST GADApplicationIdentifier currently in
-  // ios/Runner/Info.plist.
-  // TODO(iOS ads): replace all four with the real iOS AdMob units AND set the
-  //   real iOS app id in ios/Runner/Info.plist (GADApplicationIdentifier)
-  //   before an iOS release.
-  static const String _iosBannerAdUnitId = 'ca-app-pub-3940256099942544/2934735716';
-  static const String _iosInterstitialAdUnitId = 'ca-app-pub-3940256099942544/4411468910';
-  static const String _iosRewardedAdUnitId = 'ca-app-pub-3940256099942544/1712485313';
-  static const String _iosNativeAdUnitId = 'ca-app-pub-3940256099942544/3986624511';
+  static const String _defaultIosAdmobAppId = 'ca-app-pub-5202253201958912~5276741312';
+  static const String _defaultIosBannerAdUnitId = 'ca-app-pub-5202253201958912/4037480131';
+  static const String _defaultIosInterstitialAdUnitId = 'ca-app-pub-5202253201958912/2724398463';
+  static const String _defaultIosRewardedAdUnitId = 'ca-app-pub-5202253201958912/1411316793';
+  static const String _defaultIosNativeAdUnitId = 'ca-app-pub-5202253201958912/6763715828';
   
   /// Initialize config by loading from JSON file
   /// Must be called before using any AppConfig values
@@ -93,25 +85,23 @@ class AppConfig {
   static String get playStoreUrl => 
       _config['playStoreUrl'] as String? ?? _defaultPlayStoreUrl;
   
-  // AdMob App ID (read from JSON)
-  static String get admobAppId => 
-      _config['admobAppId'] as String? ?? _defaultAdmobAppId;
-  
-  static bool get _isIOS =>
-      !kIsWeb && defaultTargetPlatform == TargetPlatform.iOS;
+  // AdMob App ID (read from JSON; iOS uses its own AdMob app registration)
+  static String get admobAppId => Platform.isIOS
+      ? (_config['iosAdmobAppId'] as String? ?? _defaultIosAdmobAppId)
+      : (_config['admobAppId'] as String? ?? _defaultAdmobAppId);
 
-  // Ad Unit IDs — iOS uses its own units; Android reads from JSON config.
-  static String get bannerAdUnitId => _isIOS
-      ? _iosBannerAdUnitId
+  // Ad Unit IDs (read from JSON; iOS uses its own ad units, Android unchanged)
+  static String get bannerAdUnitId => Platform.isIOS
+      ? (_config['iosBannerAdUnitId'] as String? ?? _defaultIosBannerAdUnitId)
       : (_config['bannerAdUnitId'] as String? ?? _defaultBannerAdUnitId);
-  static String get interstitialAdUnitId => _isIOS
-      ? _iosInterstitialAdUnitId
+  static String get interstitialAdUnitId => Platform.isIOS
+      ? (_config['iosInterstitialAdUnitId'] as String? ?? _defaultIosInterstitialAdUnitId)
       : (_config['interstitialAdUnitId'] as String? ?? _defaultInterstitialAdUnitId);
-  static String get rewardedAdUnitId => _isIOS
-      ? _iosRewardedAdUnitId
+  static String get rewardedAdUnitId => Platform.isIOS
+      ? (_config['iosRewardedAdUnitId'] as String? ?? _defaultIosRewardedAdUnitId)
       : (_config['rewardedAdUnitId'] as String? ?? _defaultRewardedAdUnitId);
-  static String get nativeAdUnitId => _isIOS
-      ? _iosNativeAdUnitId
+  static String get nativeAdUnitId => Platform.isIOS
+      ? (_config['iosNativeAdUnitId'] as String? ?? _defaultIosNativeAdUnitId)
       : (_config['nativeAdUnitId'] as String? ?? _defaultNativeAdUnitId);
   
   // States/Regions Configuration
